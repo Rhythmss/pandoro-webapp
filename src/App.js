@@ -1,7 +1,5 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Menu from './components/Menu';
 import Projects from './screens/Projects';
@@ -12,22 +10,27 @@ import Project from './screens/Project';
 import Group from './screens/Group';
 import SignIn from './screens/SignIn';
 import SignUp from './screens/SignUp';
+import PrivateRoute from './components/PrivateRoute';
+import paths from './paths';
+import Logout from './screens/Logout';
+
 
 function App() {
   const location = useLocation();
 
   return (
     <>
-      {location.pathname.toLowerCase() === "/signin" || location.pathname.toLowerCase() === "/signup" ? null : <Menu />}
+      {location.pathname.toLowerCase() === paths.signIn.toLocaleLowerCase() || location.pathname.toLowerCase() === paths.signUp.toLocaleLowerCase() ? null : <Menu />}
       <Routes>
-        <Route path='/' element={<Projects />} />
-        <Route path='/notes' element={<Notes />} />
-        <Route path='/overview' element={<Overview />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/project' element={<Project />} />
-        <Route path='/group' element={<Group />} />
-        <Route path='/signIn' element={<SignIn />} />
-        <Route path='/signUp' element={<SignUp />} />
+        <Route path={paths.projects} element={<PrivateRoute><Projects /></PrivateRoute>} />
+        <Route path={paths.notes} element={<PrivateRoute><Notes /></PrivateRoute>} />
+        <Route path={paths.overview} element={<PrivateRoute><Overview /></PrivateRoute>} />
+        <Route path={paths.profile} element={<PrivateRoute><Profile /></PrivateRoute>} />
+        <Route path={paths.project} element={<PrivateRoute><Project /></PrivateRoute>} />
+        <Route path={paths.group} element={<PrivateRoute><Group /></PrivateRoute>} />
+        <Route path={paths.signIn} element={<SignIn />} />
+        <Route path={paths.signUp} element={<SignUp />} />
+        <Route path={paths.logout} element={<Logout />} />
       </Routes>
     </>
   );

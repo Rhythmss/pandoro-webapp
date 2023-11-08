@@ -21,7 +21,7 @@ const Group = () => {
                                 Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum è considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblò per preparare un testo campione. È sopravvissuto non solo a più di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni ’60, con la diffusione dei fogli di caratteri trasferibili “Letraset”, che contenevano passaggi del Lorem Ipsum, e più recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.
                             </Card.Text>
                             <Card.Footer className="d-flex bd-highlight">
-                                <span class="ms-auto p-2 bd-highlight">Gabriele Marengo</span>
+                                <span className="ms-auto p-2 bd-highlight">Gabriele Marengo</span>
                             </Card.Footer>
                         </Card.Body>
                     </Card>
@@ -52,7 +52,7 @@ const Group = () => {
                                 <img className="rounded" src="https://mdbootstrap.com/img/Photos/Avatars/man2.jpg" alt="Avatar" style={{ width: 45, height: 45 }} />
                                 <span className="fs-5 align-self-center">Manuel Maurizio</span>
                                 <span className="fs-5 align-self-center text-success">Maintainer</span>
-                                <span class="fs-4 bi bi-person-dash-fill align-self-center"></span>
+                                <span className="fs-4 bi bi-person-dash-fill align-self-center"></span>
                             </Card.Text>
                         </Card.Body>
                     </Card>

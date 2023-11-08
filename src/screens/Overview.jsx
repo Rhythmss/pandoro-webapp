@@ -170,7 +170,7 @@ const Overview = () => {
                                     <Card.Title>
                                         Best performance
                                     </Card.Title>
-                                    <Card.Text>
+                                    <div>
                                         <div className="d-flex flex-column">
                                             <h6>Name: Fourth</h6>
                                             <h6>Description: Fourth</h6>
@@ -178,7 +178,7 @@ const Overview = () => {
                                             <h6>Development days: 35</h6>
                                             <h6>Average development time: 5 days</h6>
                                         </div>
-                                    </Card.Text>
+                                    </div>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -188,7 +188,7 @@ const Overview = () => {
                                     <Card.Title>
                                         Worst performance
                                     </Card.Title>
-                                    <Card.Text>
+                                    <div>
                                         <div className="d-flex flex-column">
                                             <h6>Name: Fourth</h6>
                                             <h6>Description: Fourth</h6>
@@ -196,7 +196,7 @@ const Overview = () => {
                                             <h6>Development days: 35</h6>
                                             <h6>Average development time: 5 days</h6>
                                         </div>
-                                    </Card.Text>
+                                    </div>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -213,7 +213,7 @@ const Overview = () => {
                                     <Card.Title>
                                         Best performance
                                     </Card.Title>
-                                    <Card.Text>
+                                    <div>
                                         <div className="d-flex flex-column">
                                             <h6>Name: Fourth</h6>
                                             <h6>Description: Fourth</h6>
@@ -221,7 +221,7 @@ const Overview = () => {
                                             <h6>Development days: 35</h6>
                                             <h6>Average development time: 5 days</h6>
                                         </div>
-                                    </Card.Text>
+                                    </div>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -231,7 +231,7 @@ const Overview = () => {
                                     <Card.Title>
                                         Worst performance
                                     </Card.Title>
-                                    <Card.Text>
+                                    <div>
                                         <div className="d-flex flex-column">
                                             <h6>Name: Fourth</h6>
                                             <h6>Description: Fourth</h6>
@@ -239,7 +239,7 @@ const Overview = () => {
                                             <h6>Development days: 35</h6>
                                             <h6>Average development time: 5 days</h6>
                                         </div>
-                                    </Card.Text>
+                                    </div>
                                 </Card.Body>
                             </Card>
                         </Col>

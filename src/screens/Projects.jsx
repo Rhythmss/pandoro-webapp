@@ -19,7 +19,7 @@ const Projects = () => {
 
     return (
         <Container>
-            <Button variant="dark" className="position-fixed speed-dial" size="lg" onClick={() => { setShowModal(true) }}><i class="bi bi-plus-lg"></i></Button>
+            <Button variant="dark" className="position-fixed speed-dial" size="lg" onClick={() => { setShowModal(true) }}><i className="bi bi-plus-lg"></i></Button>
             <Row className="mt-2 mt-md-5">
                 <Col className="p-2" lg={12}>
                     <h1>Frequent Projects</h1>
@@ -31,7 +31,7 @@ const Projects = () => {
                             aria-label="Search bar"
                             aria-describedby="basic-addon2"
                         />
-                        <InputGroup.Text id="basic-addon2"><i class="bi bi-search"></i></InputGroup.Text>
+                        <InputGroup.Text id="basic-addon2"><i className="bi bi-search"></i></InputGroup.Text>
                     </InputGroup>
                 </Col>
             </Row>
@@ -42,7 +42,7 @@ const Projects = () => {
                             <Card.Title className="d-flex justify-content-between">
                                 <div className="w-75">Project's name</div>
                                 <div>
-                                    <NavDropdown menuVariant="dark" title={<i class="bi bi-three-dots-vertical text-left"></i>}>
+                                    <NavDropdown menuVariant="dark" title={<i className="bi bi-three-dots-vertical text-left"></i>}>
                                         <NavDropdown.Item href="#Modify/3.1" onClick={() => { setShowModal(true) }}>Modify</NavDropdown.Item>
                                         <NavDropdown.Item href="#Delete/3.2">Delete</NavDropdown.Item>
                                     </NavDropdown>
@@ -50,11 +50,11 @@ const Projects = () => {
                             </Card.Title>
                             <Card.Text>
                                 description sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-                                <a href="/Project" class="stretched-link projectLink">Go somewhere</a>
+                                <a href="/Project" className="stretched-link projectLink">Go somewhere</a>
                             </Card.Text>
                         </Card.Body>
                         <ListGroup className="list-group-flush">
-                            <ListGroup.Item>V 1.2.3 <i class="bi bi-person-fill"></i></ListGroup.Item>
+                            <ListGroup.Item>V 1.2.3 <i className="bi bi-person-fill"></i></ListGroup.Item>
                         </ListGroup>
                     </Card>
                 </Col>
@@ -64,7 +64,7 @@ const Projects = () => {
                             <Card.Title className="d-flex justify-content-between">
                                 <div className="w-75">Project's name</div>
                                 <div>
-                                    <NavDropdown menuVariant="dark" title={<i class="bi bi-three-dots-vertical text-left"></i>}>
+                                    <NavDropdown menuVariant="dark" title={<i className="bi bi-three-dots-vertical text-left"></i>}>
                                         <NavDropdown.Item href="#Modify/3.1" onClick={() => { setShowModal(true) }}>Modify</NavDropdown.Item>
                                         <NavDropdown.Item href="#Delete/3.2">Delete</NavDropdown.Item>
                                     </NavDropdown>
@@ -75,7 +75,7 @@ const Projects = () => {
                             </Card.Text>
                         </Card.Body>
                         <ListGroup className="list-group-flush">
-                            <ListGroup.Item>V 1.2.3 <i class="bi bi-person-fill"></i></ListGroup.Item>
+                            <ListGroup.Item>V 1.2.3 <i className="bi bi-person-fill"></i></ListGroup.Item>
                         </ListGroup>
                     </Card>
                 </Col>
@@ -91,7 +91,7 @@ const Projects = () => {
                             aria-label="Search bar"
                             aria-describedby="basic-addon2"
                         />
-                        <InputGroup.Text id="basic-addon2"><i class="bi bi-search"></i></InputGroup.Text>
+                        <InputGroup.Text id="basic-addon2"><i className="bi bi-search"></i></InputGroup.Text>
                     </InputGroup>
                 </Col>
             </Row>
@@ -102,7 +102,7 @@ const Projects = () => {
                             <Card.Title className="d-flex justify-content-between">
                                 <div className="w-75">Project's name</div>
                                 <div>
-                                    <NavDropdown menuVariant="dark" title={<i class="bi bi-three-dots-vertical text-left"></i>}>
+                                    <NavDropdown menuVariant="dark" title={<i className="bi bi-three-dots-vertical text-left"></i>}>
                                         <NavDropdown.Item href="#Modify/3.1">Modify</NavDropdown.Item>
                                         <NavDropdown.Item href="#Delete/3.2">Delete</NavDropdown.Item>
                                     </NavDropdown>
@@ -113,7 +113,7 @@ const Projects = () => {
                             </Card.Text>
                         </Card.Body>
                         <ListGroup className="list-group-flush">
-                            <ListGroup.Item>V 1.2.3 <i class="bi bi-person-fill"></i></ListGroup.Item>
+                            <ListGroup.Item>V 1.2.3 <i className="bi bi-person-fill"></i></ListGroup.Item>
                         </ListGroup>
                     </Card>
                 </Col>

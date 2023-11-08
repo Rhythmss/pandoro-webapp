@@ -76,9 +76,9 @@ const Project = () => {
                                 Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum è considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblò per preparare un testo campione. È sopravvissuto non solo a più di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni ’60, con la diffusione dei fogli di caratteri trasferibili “Letraset”, che contenevano passaggi del Lorem Ipsum, e più recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.
                             </Card.Text>
                             <Card.Footer className="d-flex bd-highlight">
-                                <h2><i class="bi bi-github bd-highlight"></i></h2>
+                                <h2><i className="bi bi-github bd-highlight"></i></h2>
                                 <span className="p-2 bd-highlight">v. 1.0.0</span>
-                                <span class="ms-auto p-2 bd-highlight">Gabriele Marengo</span>
+                                <span className="ms-auto p-2 bd-highlight">Gabriele Marengo</span>
                             </Card.Footer>
                         </Card.Body>
                     </Card>
@@ -109,14 +109,14 @@ const Project = () => {
                                     <div id="changeNotes" className="d-flex flex-column p-2">
                                         <div className="d-flex justify-content-start p-2">
                                             <h5 className="me-2">Change notes</h5>
-                                            <Button variant="success btn-sm"><i class="bi bi-plus"></i></Button>
+                                            <Button variant="success btn-sm"><i className="bi bi-plus"></i></Button>
                                         </div>
                                         <ul>
                                             <li>
                                                 <div className="d-flex justify-content-between">
                                                     <span>Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum è considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblò per preparare un testo campione.</span>
                                                     <div className="align-self-center">
-                                                        <Button variant="danger" className="btn-sm"><i class="bi bi-trash-fill"></i></Button>
+                                                        <Button variant="danger" className="btn-sm"><i className="bi bi-trash-fill"></i></Button>
                                                     </div>
                                                 </div>
                                             </li>
@@ -124,7 +124,7 @@ const Project = () => {
                                                 <div className="d-flex justify-content-between">
                                                     <span>d</span>
                                                     <div className="align-self-center">
-                                                        <Button variant="danger" className="btn-sm"><i class="bi bi-trash-fill"></i></Button>
+                                                        <Button variant="danger" className="btn-sm"><i className="bi bi-trash-fill"></i></Button>
                                                     </div>
                                                 </div>
                                             </li>
@@ -132,7 +132,7 @@ const Project = () => {
                                                 <div className="d-flex justify-content-between">
                                                     <span>Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum è considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblò per preparare un testo campione.</span>
                                                     <div className="align-self-center">
-                                                        <Button variant="danger" className="btn-sm"><i class="bi bi-trash-fill"></i></Button>
+                                                        <Button variant="danger" className="btn-sm"><i className="bi bi-trash-fill"></i></Button>
                                                     </div>
                                                 </div>
                                             </li>
@@ -141,9 +141,9 @@ const Project = () => {
                                 </Card.Text>
                             </div>
                             <div>
-                                <NavDropdown menuVariant="dark" title={<h5><i class="bi bi-three-dots-vertical"></i></h5>}>
-                                    <NavDropdown.Item href="#Modify/3.1"><div className="d-flex"><span>Start Update</span><i class="bi bi-caret-right-fill ms-auto"></i></div></NavDropdown.Item>
-                                    <NavDropdown.Item href="#Delete/3.2"><div className="d-flex"><span>Delete</span><i class="bi bi-trash-fill ms-auto"></i></div></NavDropdown.Item>
+                                <NavDropdown menuVariant="dark" title={<h5><i className="bi bi-three-dots-vertical"></i></h5>}>
+                                    <NavDropdown.Item href="#Modify/3.1"><div className="d-flex"><span>Start Update</span><i className="bi bi-caret-right-fill ms-auto"></i></div></NavDropdown.Item>
+                                    <NavDropdown.Item href="#Delete/3.2"><div className="d-flex"><span>Delete</span><i className="bi bi-trash-fill ms-auto"></i></div></NavDropdown.Item>
                                 </NavDropdown>
                             </div>
                         </Card.Body>
@@ -171,11 +171,11 @@ const Project = () => {
                                     <div id="changeNotes" className="d-flex flex-column p-2">
                                         <div className="d-flex justify-content-start p-2">
                                             <h5 className="me-2">Change notes</h5>
-                                            <Button variant="success btn-sm"><i class="bi bi-plus"></i></Button>
+                                            <Button variant="success btn-sm"><i className="bi bi-plus"></i></Button>
                                         </div>
                                         <div>
-                                            <div class="d-flex mb-3">
-                                                <div class="p-2 align-self-center">
+                                            <div className="d-flex mb-3">
+                                                <div className="p-2 align-self-center">
                                                     <Form.Check
                                                         inline
                                                         name="group1"
@@ -183,17 +183,17 @@ const Project = () => {
                                                         className="checkbox-sm"
                                                     />
                                                 </div>
-                                                <div class="p-2"><span>Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum è considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblò per preparare un testo campione.</span></div>
-                                                <div class="ms-auto p-2 align-self-center"><Button variant="danger" className="btn-sm"><i class="bi bi-trash-fill"></i></Button></div>
+                                                <div className="p-2"><span>Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum è considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblò per preparare un testo campione.</span></div>
+                                                <div className="ms-auto p-2 align-self-center"><Button variant="danger" className="btn-sm"><i className="bi bi-trash-fill"></i></Button></div>
                                             </div>
                                         </div>
                                     </div>
                                 </Card.Text>
                             </div>
                             <div>
-                                <NavDropdown menuVariant="dark" title={<h5><i class="bi bi-three-dots-vertical"></i></h5>}>
-                                    <NavDropdown.Item href="#Modify/3.1"><div className="d-flex"><span>Publish Update</span><i class="bi bi-upload ms-auto"></i></div></NavDropdown.Item>
-                                    <NavDropdown.Item href="#Delete/3.2"><div className="d-flex"><span>Delete</span><i class="bi bi-trash-fill ms-auto"></i></div></NavDropdown.Item>
+                                <NavDropdown menuVariant="dark" title={<h5><i className="bi bi-three-dots-vertical"></i></h5>}>
+                                    <NavDropdown.Item href="#Modify/3.1"><div className="d-flex"><span>Publish Update</span><i className="bi bi-upload ms-auto"></i></div></NavDropdown.Item>
+                                    <NavDropdown.Item href="#Delete/3.2"><div className="d-flex"><span>Delete</span><i className="bi bi-trash-fill ms-auto"></i></div></NavDropdown.Item>
                                 </NavDropdown>
                             </div>
                         </Card.Body>
@@ -245,7 +245,7 @@ const Project = () => {
                                 </Card.Text>
                             </div>
                             <div>
-                                <Button variant="danger" className="btn-sm"><i class="bi bi-trash-fill"></i></Button>
+                                <Button variant="danger" className="btn-sm"><i className="bi bi-trash-fill"></i></Button>
                             </div>
                         </Card.Body>
                     </Card>
