@@ -137,7 +137,7 @@ const SignUp = () => {
                                 {errors.password}
                             </Form.Control.Feedback>
                         </FloatingLabel>
-                        <Button variant="dark" size="lg" className="w-100" type="submit">Sign in</Button>
+                        <Button variant="dark" size="lg" className="w-100" type="submit">Sign up</Button>
                     </Form>
                     <span className="d-flex justify-content-center">Have an account?&nbsp;<a href={paths.signIn}>Sign in</a></span>
                 </div>

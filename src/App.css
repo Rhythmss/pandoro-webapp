@@ -61,6 +61,10 @@
   border-left: 0.3em solid transparent;
 }
 
+.dropdown-divider{
+  border-color: white!important;
+}
+
 .dropdown-menu {
   background-color: #07020d!important;
   border: none;
@@ -160,24 +164,29 @@
  }
 
  .checkbox-xl .form-check-input:focus {
-    border-color: #dee2e6;
+    border-color: #dee2e6!important;
     box-shadow: none;
     border-inline-color: none;
  }
+ 
+ .form-check-input:focus {
+    background-color: white!important;
+    border: 1px solid #07020d!important;
+}
 
  .checkbox-xl .form-check-input:checked {
-    background-color: #07020d;
+    background-color: #07020d!important;
     border: none;
  }
 
   .checkbox-sm .form-check-input:focus {
-    border-color: #dee2e6;
+    border-color: #dee2e6!important;
     box-shadow: none;
     border-inline-color: none;
  }
 
  .checkbox-sm .form-check-input:checked {
-    background-color: #07020d;
+    background-color: #07020d!important;
     border: none;
  }
 
@@ -219,13 +228,13 @@
 
 .boxNotification {
   height: 470px;
-  -ms-overflow-style: none; /* for Internet Explorer, Edge */
-    scrollbar-width: none; /* for Firefox */
+  -ms-overflow-style: none; 
+    scrollbar-width: none; 
     overflow-y: scroll; 
 }
 
 .boxNotification::-webkit-scrollbar {
-    display: none; /* for Chrome, Safari, and Opera */
+    display: none;
 }
 
 .projectLink {
@@ -234,6 +243,10 @@
   height: 0;
   width: 0;
   display: block;
+}
+
+.projectCard {
+  transform: rotate(0);
 }
 
 .groupLink {
@@ -298,4 +311,72 @@ a {
 .toast .toast-body{
    background-color: #07020de5;
    color: white;
+}
+
+.form-check-input:checked[type=radio] {
+    background-color: #07020d;
+    border: #07020d;
+    box-shadow: #07020d;
+}
+
+.form-check-input:focus{
+    background-color: #07020d;
+    border: #07020d;
+    box-shadow: 0 0 0 0.25rem #07020d52;
+}
+
+.modalScrollable {
+  height: 430px;
+  -ms-overflow-style: none; 
+    scrollbar-width: none; 
+    overflow-y: scroll; 
+}
+
+.modalScrollable::-webkit-scrollbar {
+    display: none;
+}
+
+.floatingTextarea > #floatingTextarea:not(:-moz-placeholder-shown) ~ label {
+    opacity: 1;
+    color: rgba(0, 0, 0, 0.5);
+    background-color: #fff;
+    height: auto;
+    padding: 0px;
+    padding: 0px 0px 0px 10px;
+    width: 100%;
+    transform: scale(0.982) translateY(0.045rem) translateX(0.1rem);
+    border-radius: 5px 0 0 0;
+}
+.form-floating > #floatingTextarea:focus ~ label,
+.form-floating > #floatingTextarea:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+    opacity: 1;
+    color: rgba(0, 0, 0, 0.5);
+    background-color: #fff;
+    height: auto;
+    padding: 0px 0px 0px 10px;
+    width: 100%;
+    transform: scale(0.982) translateY(0.045rem) translateX(0.1rem);
+    border-radius: 5px 0 0 0;
+}
+.form-floating > .form-control:-webkit-autofill ~ label {
+    opacity: 1;
+    color: rgba(0, 0, 0, 0.5);
+    background-color: #fff;
+    height: auto;
+    padding: 0px;
+    padding: 0px 0px 0px 10px;
+    width: 100%;
+    transform: scale(0.982) translateY(0.045rem) translateX(0.1rem);
+    border-radius: 5px 0 0 0;
+}
+
+.form-control {
+  -ms-overflow-style: none; 
+    scrollbar-width: none; 
+    overflow-y: scroll; 
+}
+
+.form-control::-webkit-scrollbar {
+    display: none;
 }

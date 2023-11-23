@@ -13,12 +13,14 @@
     "dotenv": "^16.3.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
+    "react-bootstrap-submenu": "^3.0.3",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-multiselect-dropdown-bootstrap": "^1.1.0",
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
     "react-svg": "^16.1.28",
+    "use-state-with-callback": "^3.0.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

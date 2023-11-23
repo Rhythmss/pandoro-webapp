@@ -3,7 +3,7 @@ const paths = {
     notes: "/notes",
     profile: "/profile",
     project: "/project",
-    group: "/group",
+    group: "/group/:groupID",
     signIn: "/signIn",
     signUp: "/signUp",
     overview: "/overview",
