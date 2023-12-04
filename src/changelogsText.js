@@ -2,7 +2,7 @@ const changelogsText = (changelog) => {
     const key = changelog.changelog_event
     const group = changelog.group
     const project = changelog.project
-    const extraContent = changelog.extraContent
+    const extraContent = changelog.extra_content
     var entityName;
     if (group) {
         entityName = group.name

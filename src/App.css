@@ -336,6 +336,17 @@ a {
     display: none;
 }
 
+.modalScrollableScheduleUpdate::-webkit-scrollbar {
+    display: none;
+}
+
+.modalScrollableScheduleUpdate {
+  height: 250px;
+  -ms-overflow-style: none; 
+    scrollbar-width: none; 
+    overflow-y: scroll; 
+}
+
 .floatingTextarea > #floatingTextarea:not(:-moz-placeholder-shown) ~ label {
     opacity: 1;
     color: rgba(0, 0, 0, 0.5);
@@ -379,4 +390,29 @@ a {
 
 .form-control::-webkit-scrollbar {
     display: none;
+}
+
+.btn-success:hover{
+  background-color: rgb(131, 165, 88)
+}
+
+.form-check-input:focus[type=radio] {
+    background-color: #07020d!important;
+    border: #07020d!important;
+    box-shadow: #07020d!important;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;   
+    cursor: inherit;
+    display: block;
 }

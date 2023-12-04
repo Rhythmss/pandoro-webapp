@@ -90,7 +90,6 @@ const Notes = () => {
             </Row>
             <Row xs={1} className="mt-2 mt-md-3">{
                 noteList ? noteList.map((note, index) => {
-                    console.log(note)
                     return <Col className="p-2" key={note.id}>
                         <Card className="border border-0">
                             <Card.Body className="d-flex align-items-start">

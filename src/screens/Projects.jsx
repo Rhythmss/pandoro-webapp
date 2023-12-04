@@ -23,29 +23,39 @@ const Projects = () => {
     const token = localStorage.getItem(process.env.REACT_APP_LOCALSTORAGE_TOKEN)
     const [toast, setToast] = useState({ message: null, show: false })
     const [showModal, setShowModal] = useState({ show: false, projectID: null });
+    const [frequentProjects, setFrequentProjects] = useState([])
     const [projects, setProjects] = useState([])
-    const [projectInfo, setProjectInfo] = useStateWithCallbackLazy({ name: null, project_description: null, project_version: null, project_short_description: null, groups: [], project_repository: "", all_groups: [] })
+    const [projectInfo, setProjectInfo] = useStateWithCallbackLazy({ name: "", project_description: "", project_version: "", project_short_description: "", groups: [], project_repository: "", all_groups: [] })
     const [currentProject, setCurrentProject] = useState("")
+    const [frequentProject, setFrequentProject] = useState("")
 
     useEffect(() => {
         getGroups()
         getProject()
     }, [])
 
+    const deleteProject = (projectID) => {
+        axios.delete(requests.projects.deleteProject(projectID), { headers: { "token": token, "id": id } }).then(res => {
+            getProject()
+        })
+    }
+
     const getProject = () => {
         axios.get(requests.projects.list, { headers: { "token": token, "id": id } }).then(res => {
             setProjects(res.data)
+            setFrequentProjects(res.data.sort((pOne, pTwo) => pOne.updates.length - pTwo.updates.length).slice(0, 10))
         })
     }
 
     const getGroups = () => {
         axios.get(requests.groups.list, { headers: { "token": token, "id": id } }).then(res => {
             setProjectInfo({
-                name: null, project_description: null, project_version: null, project_short_description: null, groups: [], project_repository: "",
+                name: "", project_description: "", project_version: "", project_short_description: "", groups: [], project_repository: "",
                 all_groups: res.data.map((group) => {
                     return {
                         name: group.name,
-                        id: group.id
+                        id: group.id,
+                        group_members: group.group_members
                     }
                 })
             })
@@ -55,7 +65,6 @@ const Projects = () => {
     const projectAction = (event) => {
         event.preventDefault()
         event.stopPropagation()
-        console.log(projectInfo)
         const { all_groups, ...data } = projectInfo
         if (showModal.projectID)
             editProject(data)
@@ -102,35 +111,63 @@ const Projects = () => {
                             placeholder="Search bar"
                             aria-label="Search bar"
                             aria-describedby="basic-addon2"
+                            value={frequentProject}
+                            onChange={(event) => { setFrequentProject(event.currentTarget.value) }}
                         />
                         <InputGroup.Text id="basic-addon2"><i className="bi bi-search"></i></InputGroup.Text>
                     </InputGroup>
                 </Col>
             </Row>
             <Row className="mt-2 mt-md-3" xs={1} lg={4}>
-                <Col className="p-2">
-                    <Card className="border border-0 h-100">
-                        <Card.Body>
-                            <Card.Title className="d-flex justify-content-between">
-                                <div className="w-75 projectCard"><a href="/Project" className="stretched-link projectLink">Go somewhere</a>Project's name</div>
-                                <div>
-                                    <NavDropdown menuVariant="dark" title={<i className="bi bi-three-dots-vertical text-left"></i>}>
-                                        <NavDropdown.Item onClick={() => { setShowModal({ show: true, projectID: null }) }}>Modify</NavDropdown.Item>
-                                        <NavDropdown.Item>Delete</NavDropdown.Item>
-                                    </NavDropdown>
-                                </div>
-                            </Card.Title>
-                            <Card.Text className="projectCard">
-                                description sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-                                <a href="/Project" className="stretched-link projectLink">Go somewhere</a>
-                            </Card.Text>
-                        </Card.Body>
-                        <ListGroup className="list-group-flush">
-                            <ListGroup.Item>V 1.2.3 <i className="bi bi-person-fill"></i></ListGroup.Item>
-                        </ListGroup>
-                    </Card>
-                </Col>
-            </Row >
+                {
+                    frequentProjects.map((project => {
+                        if (frequentProject === "" || project.name.includes(frequentProject)) {
+                            return (
+                                <Col className="p-2" key={project.id}>
+                                    <Card className="border border-0 h-100">
+                                        <Card.Body>
+                                            <Card.Title className="d-flex justify-content-between">
+                                                <div className="w-75 projectCard"><a href={"/project/" + project.id} className="stretched-link projectLink">Go somewhere</a>{project.name}</div>
+                                                {project.author.id === id ?
+                                                    <div>
+                                                        <NavDropdown menuVariant="dark" title={<i className="bi bi-three-dots-vertical text-left"></i>}>
+                                                            <NavDropdown.Item onClick={
+                                                                () => {
+                                                                    setProjectInfo({
+                                                                        ...projectInfo,
+                                                                        name: project.name,
+                                                                        project_description: project.project_description,
+                                                                        project_repository: project.project_repository,
+                                                                        project_short_description: project.project_short_description,
+                                                                        project_version: project.project_version,
+                                                                        groups: project.groups.length > 0 ? project.groups.map(group => { return group.id }) : []
+                                                                    }, (projectInfo) => {
+                                                                        setShowModal({ show: true, projectID: project.id })
+                                                                    })
+
+
+                                                                }
+                                                            }>Modify</NavDropdown.Item>
+                                                            <NavDropdown.Item onClick={() => { deleteProject(project.id) }}>Delete</NavDropdown.Item>
+                                                        </NavDropdown>
+                                                    </div> : null
+                                                }
+
+                                            </Card.Title>
+                                            <Card.Text className="projectCard">
+                                                {project.project_description}
+                                                <a href={"/project/" + project.id} className="stretched-link projectLink">Go somewhere</a>
+                                            </Card.Text>
+                                        </Card.Body>
+                                        <ListGroup className="list-group-flush">
+                                            <ListGroup.Item>V {project.project_version} {project.groups.length > 0 ? <i className="bi bi-people-fill"></i> : <i className="bi bi-person-fill"></i>}</ListGroup.Item>
+                                        </ListGroup>
+                                    </Card>
+                                </Col>
+                            )
+                        } else return null
+                    }))}
+            </Row>
             <Row className="mt-2 mt-md-5">
                 <Col className="p-2" lg={12}>
                     <h1>Current Projects</h1>
@@ -157,35 +194,36 @@ const Projects = () => {
                                     <Card className="border border-0 h-100">
                                         <Card.Body>
                                             <Card.Title className="d-flex justify-content-between">
-                                                <div className="w-75 projectCard"><a href="/Project" className="stretched-link projectLink">Go somewhere</a>{project.name}</div>
-                                                <div>
-                                                    <NavDropdown menuVariant="dark" title={<i className="bi bi-three-dots-vertical text-left"></i>}>
-                                                        <NavDropdown.Item onClick={
-                                                            () => {
-                                                                setProjectInfo({
-                                                                    ...projectInfo,
-                                                                    name: project.name,
-                                                                    project_description: project.project_description,
-                                                                    project_repository: project.project_repository,
-                                                                    project_short_description: project.project_short_description,
-                                                                    project_version: project.project_version,
-                                                                    groups: project.groups.length > 0 ? project.groups.map(group => { return group.id }) : []
-                                                                }, (projectInfo) => {
-                                                                    console.log(projectInfo)
+                                                <div className="w-75 projectCard"><a href={"/project/" + project.id} className="stretched-link projectLink">Go somewhere</a>{project.name}</div>
+                                                {project.author.id === id ?
+                                                    <div>
+                                                        <NavDropdown menuVariant="dark" title={<i className="bi bi-three-dots-vertical text-left"></i>}>
+                                                            <NavDropdown.Item onClick={
+                                                                () => {
+                                                                    setProjectInfo({
+                                                                        ...projectInfo,
+                                                                        name: project.name,
+                                                                        project_description: project.project_description,
+                                                                        project_repository: project.project_repository,
+                                                                        project_short_description: project.project_short_description,
+                                                                        project_version: project.project_version,
+                                                                        groups: project.groups.length > 0 ? project.groups.map(group => { return group.id }) : []
+                                                                    }, (projectInfo) => {
+                                                                        setShowModal({ show: true, projectID: project.id })
+                                                                    })
 
-                                                                    setShowModal({ show: true, projectID: project.id })
-                                                                })
 
+                                                                }
+                                                            }>Modify</NavDropdown.Item>
+                                                            <NavDropdown.Item onClick={() => { deleteProject(project.id) }}>Delete</NavDropdown.Item>
+                                                        </NavDropdown>
+                                                    </div> : null
+                                                }
 
-                                                            }
-                                                        }>Modify</NavDropdown.Item>
-                                                        <NavDropdown.Item>Delete</NavDropdown.Item>
-                                                    </NavDropdown>
-                                                </div>
                                             </Card.Title>
                                             <Card.Text className="projectCard">
                                                 {project.project_description}
-                                                <a href="/Project" className="stretched-link projectLink">Go somewhere</a>
+                                                <a href={"/project/" + project.id} className="stretched-link projectLink">Go somewhere</a>
                                             </Card.Text>
                                         </Card.Body>
                                         <ListGroup className="list-group-flush">
@@ -205,7 +243,7 @@ const Projects = () => {
                     <Modal.Title>Create Project</Modal.Title>
                 </Modal.Header>
                 <Form noValidate onSubmit={(event) => projectAction(event)}>
-                    <Modal.Body>
+                    <Modal.Body className="modalScrollable">
                         <Form.Floating className="mb-3">
                             <Form.Control
                                 id="floatingInputCustom"
@@ -268,22 +306,21 @@ const Projects = () => {
                             />
                             <label htmlFor="floatingInputCustom">Repository</label>
                         </Form.Floating>
-                        <ToggleButtonGroup type="checkbox" className="mb-2">
+                        <ToggleButtonGroup type="checkbox" className="mb-2" value={projectInfo.groups} onChange={(val) => {
+                            setProjectInfo({ ...projectInfo, groups: val })
+                        }}>
                             {
-                                projectInfo.all_groups.map((g) => {
-                                    return (
-                                        <ToggleButton id="tbg-check-1" key={g.id} onChange={() => {
-                                            projectInfo.groups.filter(group => group === g.id).length === 1 ? setProjectInfo({
-                                                ...projectInfo,
-                                                groups: projectInfo.groups.filter(group => group !== g.id)
-                                            }) : setProjectInfo({
-                                                ...projectInfo,
-                                                groups: [...projectInfo.groups, g.id]
-                                            })
-                                        }} checked={projectInfo.groups.filter(group => group === g.id).length === 1} className="btn-dark" >
-                                            {g.name}
-                                        </ToggleButton>
-                                    )
+                                projectInfo.all_groups.map((g, index) => {
+                                    if (g.group_members) {
+                                        return (
+                                            g.group_members.filter(member => member.role === "ADMIN" && member.id === id).length > 0 ?
+                                                <ToggleButton id={"tbg-btn-" + index + 1} key={g.id} value={g.id} className="btn-dark">
+                                                    {g.name}
+                                                </ToggleButton> : null
+                                        )
+                                    }
+                                    else
+                                        return null
                                 })
                             }
                         </ToggleButtonGroup>

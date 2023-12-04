@@ -38,7 +38,7 @@ const SignIn = () => {
                     setAlertMessage(null);
                     localStorage.setItem(process.env.REACT_APP_LOCALSTORAGE_TOKEN, response.data.token);
                     localStorage.setItem(process.env.REACT_APP_LOCALSTORAGE_ID, response.data.id);
-                    localStorage.setItem(process.env.REACT_APP_LOCALSTORAGE_IMAGE_URL, response.data.profile_pic);
+                    localStorage.setItem(process.env.REACT_APP_LOCALSTORAGE_IMAGE_URL, requests.url + response.data.profile_pic);
                     localStorage.setItem(process.env.REACT_APP_LOCALSTORAGE_EMAIL, email);
                     localStorage.setItem(process.env.REACT_APP_LOCALSTORAGE_NAME, response.data.name);
                     localStorage.setItem(process.env.REACT_APP_LOCALSTORAGE_SURNAME, response.data.surname);

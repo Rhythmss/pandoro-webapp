@@ -25,7 +25,7 @@ const Profile = () => {
     const [changelogs, setChangelogs] = useState([]);
     const [groups, setGroups] = useState([]);
     const [showModalCreateGroup, setShowModalCreateGroup] = useState(false)
-    const [memberEmails, setMemberEmails] = useState([{ email: "", errorMessage: null }])
+    const [memberEmails, setMemberEmails] = useState([])
     const [groupInfo, setGroupInfo] = useState({ name: "", group_description: "", nameError: null, group_descriptionError: null })
 
     useEffect(() => {
@@ -33,22 +33,33 @@ const Profile = () => {
         getGroups()
     }, [])
 
-    const acceptGroupInvitation = (groupID) => {
-        axios.patch(requests.groups.acceptGroupInvitation(groupID), null, { headers: { "token": token, "id": id } }).then(res => {
+    const changeProfilePic = (event) => {
+        const formData = new FormData()
+        formData.append("profile_pic", event.currentTarget.files[0]);
+
+        axios.post(requests.users.changeProfilePic(id), formData, { headers: { "token": token, "Content-Type": "multipart/form-data" } }).then(res => {
+            setImageUrl(requests.url + res.data.data.profile_pic)
+            localStorage.setItem(process.env.REACT_APP_LOCALSTORAGE_IMAGE_URL, requests.url + res.data.data.profile_pic)
+            window.location.reload();
+        })
+    }
+
+    const acceptGroupInvitation = (groupID, changelogID) => {
+        axios.patch(requests.groups.acceptGroupInvitation(groupID), changelogID, { headers: { "token": token, "id": id, "Content-Type": "text/plain" } }).then(res => {
             getChangeLogs()
             getGroups()
         })
     }
 
-    const declineGroupInvitation = (groupID) => {
-        axios.delete(requests.groups.declineGroupInvitation(groupID), { headers: { "token": token, "id": id } }).then(res => {
+    const declineGroupInvitation = (groupID, changelogID) => {
+        axios.delete(requests.groups.declineGroupInvitation(groupID), changelogID, { headers: { "token": token, "id": id } }).then(res => {
             getChangeLogs()
             getGroups()
         })
     }
 
     const closeCreateGroupModal = () => {
-        setMemberEmails([{ email: "", errorMessage: null }])
+        setMemberEmails([])
         setGroupInfo({ name: "", group_description: "", nameError: null, group_descriptionError: null })
         setShowModalCreateGroup(false)
     }
@@ -57,7 +68,8 @@ const Profile = () => {
         event.preventDefault()
         event.stopPropagation()
         if (checkErrorGroupCreation()) {
-            const data = { name: groupInfo.name, group_description: groupInfo.group_description, members: memberEmails.map((member) => { return member.email }) }
+            const members = memberEmails.map((member) => { return member.email })
+            const data = { name: groupInfo.name, group_description: groupInfo.group_description, members: members.length > 0 ? members : [localStorage.getItem(process.env.REACT_APP_LOCALSTORAGE_EMAIL)] }
             axios.post(requests.groups.createGroup, data, { headers: { "token": token, "id": id } }).then(res => {
                 if (res.data.success) {
                     closeCreateGroupModal()
@@ -70,6 +82,7 @@ const Profile = () => {
             })
         }
     }
+
 
     const checkErrorGroupCreation = () => {
         var check = true
@@ -175,7 +188,7 @@ const Profile = () => {
                             <Card.Title className="d-flex justify-content-center mt-3">
                                 <div className="d-inline-flex position-relative">
                                     <span className="position-absolute top-0 start-100 translate-middle">
-                                        <Button className="rounded" variant="light" size="md"><i className="bi bi-pencil-square"></i></Button>
+                                        <Button className="rounded btn-file" variant="light" size="md"><i className="bi bi-pencil-square"></i><Form.Control type="file" onChange={(event) => { changeProfilePic(event) }} /></Button>
                                     </span>
                                     <img className="rounded-4 shadow-4 avatar" src={imageUrl} alt="Avatar" style={{ width: 100, height: 100 }} />
                                 </div>
@@ -205,13 +218,12 @@ const Profile = () => {
                             <div className="overflow-scroll boxNotification">
                                 {
                                     changelogs ? changelogs.map((changelog) => {
-                                        console.log(changelog)
                                         return (
                                             <div className="border-0 border-bottom d-flex justify-content-between p-2" key={changelog.id}>
                                                 <div className="w-75">
                                                     <h6>{changelog.title}</h6>
                                                     <span>{changelogsText(changelog)}</span><br />
-                                                    {changelog.changelog_event === "INVITED_GROUP" ? <div className="mt-2"><Button onClick={() => { acceptGroupInvitation(changelog.group.id) }} variant="success border-0" className="me-2"><i className="bi bi-check"></i>Accept</Button><Button onClick={() => { declineGroupInvitation(changelog.group.id) }} variant="danger" className="border-0"><i className="bi bi-x"></i>Decline</Button></div> : null}
+                                                    {changelog.changelog_event === "INVITED_GROUP" ? <div className="mt-2"><Button onClick={() => { acceptGroupInvitation(changelog.group.id, changelog.id) }} variant="success border-0" className="me-2"><i className="bi bi-check"></i>Accept</Button><Button onClick={() => { declineGroupInvitation(changelog.group.id, changelog.id) }} variant="danger" className="border-0"><i className="bi bi-x"></i>Decline</Button></div> : null}
                                                 </div>
                                                 <div className="d-flex">
                                                     <Button variant="danger" className="btn-sm border-0 align-self-center" onClick={() => {
@@ -233,7 +245,6 @@ const Profile = () => {
             <Row className='mt-2 mt-md-3 mb-5'>
                 {
                     groups ? groups.map((group) => {
-                        console.log(group)
                         const role = group.group_members.find(member => member.id === id).role
                         return (
                             <Col className="p-2" xs={12} md={4} lg={3} key={group.id}>
@@ -284,7 +295,7 @@ const Profile = () => {
             <Modal centered show={showModalCreateGroup} fullscreen={false} onHide={() => {
                 closeCreateGroupModal()
             }} size="lg">
-                <Form noValidate onSubmit={(event) => createGroup(event)}>
+                <Form noValidate onSubmit={(event) => { createGroup(event) }}>
                     <Modal.Header closeButton>
                         <Modal.Title>Create group</Modal.Title>
                     </Modal.Header>

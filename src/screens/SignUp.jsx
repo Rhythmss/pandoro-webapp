@@ -14,6 +14,7 @@ const SignUp = () => {
     const [surname, setSurname] = useState(null);
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
+    const [serverSecret, setServerSecret] = useState(null);
     const [errors, setErrors] = useState({});
     const [alertMessage, setAlertMessage] = useState(false);
     const userId = localStorage.getItem(process.env.REACT_APP_LOCALSTORAGE_ID);
@@ -32,7 +33,8 @@ const SignUp = () => {
                 name: name,
                 surname: surname,
                 email: email,
-                password: password
+                password: password,
+                server_secret: serverSecret
             }
             axios.post(requests.users.signUp, data).then(res => {
                 const response = res.data;
@@ -42,7 +44,7 @@ const SignUp = () => {
                     setAlertMessage(null);
                     localStorage.setItem(process.env.REACT_APP_LOCALSTORAGE_TOKEN, response.data.token);
                     localStorage.setItem(process.env.REACT_APP_LOCALSTORAGE_ID, response.data.id);
-                    localStorage.setItem(process.env.REACT_APP_LOCALSTORAGE_IMAGE_URL, response.data.profile_pic);
+                    localStorage.setItem(process.env.REACT_APP_LOCALSTORAGE_IMAGE_URL, requests.url + response.data.profile_pic);
                     localStorage.setItem(process.env.REACT_APP_LOCALSTORAGE_EMAIL, email);
                     localStorage.setItem(process.env.REACT_APP_LOCALSTORAGE_NAME, name);
                     localStorage.setItem(process.env.REACT_APP_LOCALSTORAGE_SURNAME, surname);
@@ -70,6 +72,9 @@ const SignUp = () => {
         }
         if (!password) {
             newErrors.password = "Field password " + process.env.REACT_APP_FIELD_EMPTY;
+        }
+        if (!serverSecret) {
+            newErrors.serverSecret = "Field server secret " + process.env.REACT_APP_FIELD_EMPTY;
         }
         return newErrors;
     }
@@ -135,6 +140,18 @@ const SignUp = () => {
                             <Form.Control type="password" placeholder="password" isInvalid={!!errors.password} />
                             <Form.Control.Feedback type="invalid">
                                 {errors.password}
+                            </Form.Control.Feedback>
+                        </FloatingLabel>
+                        <FloatingLabel
+                            controlId="floatingInputPassword"
+                            label="Server secret"
+                            className="mb-3"
+                            value={password}
+                            onChange={(e) => { setServerSecret(e.target.value) }}
+                        >
+                            <Form.Control type="password" placeholder="Server secret" isInvalid={!!errors.serverSecret} />
+                            <Form.Control.Feedback type="invalid">
+                                {errors.serverSecret}
                             </Form.Control.Feedback>
                         </FloatingLabel>
                         <Button variant="dark" size="lg" className="w-100" type="submit">Sign up</Button>
