@@ -342,7 +342,7 @@ const Overview = () => {
                         <Col xs={12} className="mb-4">
                             <h4>Personal</h4>
                         </Col>
-                        {bestPersonalProject.name ? <Col xs={12} className="mb-4">
+                        {bestPersonalProject ? <Col xs={12} className="mb-4">
                             <Card className="border-top-0 border-start-0 border-bottom-0 border-success border-5">
                                 <Card.Body>
                                     <Card.Title>
@@ -360,7 +360,7 @@ const Overview = () => {
                                 </Card.Body>
                             </Card>
                         </Col> : null}
-                        {worstPersonalProject.name ?
+                        {worstPersonalProject ?
                             <Col>
                                 <Card className="border-top-0 border-start-0 border-bottom-0 border-danger border-5">
                                     <Card.Body>
@@ -386,7 +386,7 @@ const Overview = () => {
                         <Col className="mb-4">
                             <h4>Group</h4>
                         </Col>
-                        {bestGroupProject.name ?
+                        {bestGroupProject ?
                             <Col xs={12} className="mb-4">
                                 <Card className="border-top-0 border-start-0 border-bottom-0 border-success border-5">
                                     <Card.Body>
@@ -405,7 +405,7 @@ const Overview = () => {
                                     </Card.Body>
                                 </Card>
                             </Col> : null}
-                        {worstGroupProject.name ?
+                        {worstGroupProject ?
                             <Col>
                                 <Card className="border-top-0 border-start-0 border-bottom-0 border-danger border-5">
                                     <Card.Body>
