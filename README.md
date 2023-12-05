@@ -9,6 +9,7 @@ Create, develop and publish your projects with **Pandoro**!
 
 > [!WARNING]  
 > the service will run using the HTTP protocol as default, it is recommended to implement an SSL or TLS certificate to secure communication on your infrastructure.
+> Take a look [here](https://tecadmin.net/step-by-step-guide-to-creating-self-signed-ssl-certificates/) to get more information.
 
 ## Roadmap
 
