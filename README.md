@@ -7,6 +7,9 @@ This project, based on React framework, is an open source management software us
 projects.
 Create, develop and publish your projects with **Pandoro**!
 
+[!WARNING]  
+the service will run using the HTTP protocol as default, it is recommended to implement an SSL or TLS certificate to secure communication on your infrastructure.
+
 ## Roadmap
 
 This project will be constantly developed to reach different platforms to work on, following the platforms releases
