@@ -67,9 +67,10 @@ const SignUp = () => {
         if (!email) {
             newErrors.email = "Field email " + process.env.REACT_APP_FIELD_EMPTY;
         }
-        if (!email.includes("@")) {
-            newErrors.email = "Wrong email field";
-        }
+        if (email)
+            if (!email.includes("@")) {
+                newErrors.email = "Wrong email field";
+            }
         if (!password) {
             newErrors.password = "Field password " + process.env.REACT_APP_FIELD_EMPTY;
         }

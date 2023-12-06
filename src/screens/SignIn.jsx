@@ -10,8 +10,8 @@ import requests from "../requests";
 import axios from "axios";
 
 const SignIn = () => {
-    const [email, setEmail] = useState(null);
-    const [password, setPassword] = useState(null);
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
     const [errors, setErrors] = useState({});
     const [alertMessage, setAlertMessage] = useState(false);
     const userId = localStorage.getItem(process.env.REACT_APP_LOCALSTORAGE_ID);
@@ -52,11 +52,13 @@ const SignIn = () => {
 
     const checkError = () => {
         const newErrors = {};
-        if (!email.includes("@")) {
-            newErrors.email = "Wrong email field";
-        }
         if (!email) {
             newErrors.email = "Field email " + process.env.REACT_APP_FIELD_EMPTY;
+        }
+        if (email) {
+            if (!email.includes("@")) {
+                newErrors.email = "Wrong email field";
+            }
         }
         if (!password) {
             newErrors.password = "Field password " + process.env.REACT_APP_FIELD_EMPTY;

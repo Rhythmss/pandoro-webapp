@@ -1,4 +1,4 @@
-const baseUrl = "http://217.160.205.94/:1809/api/v1"
+const baseUrl = "https://host:1809/api/v1"
 const users = "users"
 const notes = "notes"
 const changelogs = "changelogs"
@@ -7,7 +7,7 @@ const projects = "projects"
 const updates = "updates"
 
 const requests = {
-    url: "http://217.160.205.94/:1809/",
+    url: "https://host:1809/",
     users: {
         signUp: `${baseUrl}/${users}/signUp`,
         signIn: `${baseUrl}/${users}/signIn`,
